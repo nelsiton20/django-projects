@@ -1,0 +1,30 @@
+{% load static %}
+{% url 'home' as home %}
+{% url 'add_task' as add_task %}
+{% url 'logout' as logout %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <title>{% block title %}{% endblock%}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% block style %} {% endblock %}">
+</head>
+<body>
+  <header>
+    <div class="logo">To Do List</div>
+    <button class="menu-btn" id="menu-btn">☰</button>
+    <nav class="nav-links" id="nav-links">
+      <a href="{{ home }}" class="{% if request.path == home %}active{% endif %}">Inicio</a>
+      <a href="{{ add_task }}" class="{% if request.path == add_task %}active{% endif %}">Agregar</a>
+      <a href="{{ logout }}">Logout</a>
+    </nav>
+  </header>
+  {% block content %}
+  {% endblock %}
+  <script src="{% static 'javascript/base.js' %}"></script>
+</body>
+</html>
+

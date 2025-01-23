@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% load static %}
+{% block style %} {% static 'css/tasks/home.css'%} {% endblock %}
+
+{% block content %}
+<main class="main-container">
+    <div class="main-header">
+        Tasks
+    </div>
+    <section class="task-container">
+        {% for task in tasks %}
+            <article class="task">
+                <div class="task-header">
+                    <h3>{{ task.title }}</h3>
+                    <div class="icon-container">
+                        <a href="{% url 'update_completed' task.id %}">
+                            <img class="task-img" src="{% if task.completed %} {% static 'icons/tarea.png'%} {% else %} {% static 'icons/incompleto.png'%} {% endif %}">
+                        </a>
+                        <a href="{% url 'delete_task' task.id %}">
+                            <img class="task-img" src="{% static 'icons/eliminar.png' %}">
+                        </a>
+                    </div>
+                </div>
+                <p>{{ task.description }}</p>
+                <div class="detail">
+                    <a href="{% url 'edit_task' task.id %}" class="btn-detail">Editar</a>
+                    <a href="{% url 'task_detail' task.slug %}" class="btn-detail">Ver más</a>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+</main>
+<a class="option" href="{% url 'add_task' %}">
+    <span>
+        <img src="{% static 'icons/agregar.png' %}" width="20"> 
+    </span>
+    <p>Agregar nueva tarea</p>
+</a>
+{% endblock %}

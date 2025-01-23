@@ -1,0 +1,32 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de Python cacheados
+__pycache__/
+*.py[cod]
+
+# Archivos de entornos virtuales
+env/
+
+# Archivos de configuración de Django
+db.sqlite3
+*.log
+*.pot
+*.pyc
+
+# Archivos estáticos y media generados automáticamente
+staticfiles/
+media/
+
+# Migraciones
+*/migrations/*.pyc
+*/migrations/*.py
+
+# Archivos de prueba y otros temporales
+*.bak
+*.tmp
+
+# Archivos de configuración de IDEs
+.vscode/
+.idea/

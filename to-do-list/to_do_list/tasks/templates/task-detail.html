@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Task Detail {% endblock %}
+{% block style %} {% static 'css/tasks/task-detail.css' %} {% endblock %}
+
+{% block content %}
+<div class="container">
+    <main class="main-container">
+        <div class="main-header">
+            {{ task.title }}
+        </div>
+        <section class="main-content">
+            <div class="main-description">
+                <p>{{ task.description }}</p>
+            </div>
+            <div class="main-detail">
+                <span>Creado por: {{ task.user }}</span>
+                <span>{{ task.created_at }}</span>
+            </div>
+        </section>
+        <div class="icon-container">
+            <a href="{% url 'update_completed' task.id %}">
+                <img class="task-img" src="{% if task.completed %} {% static 'icons/tarea.png'%} {% else %} {% static 'icons/incompleto.png'%} {% endif %}">
+            </a>
+            <a href="{% url 'delete_task' task.id %}">
+                <img class="task-img" src="{% static 'icons/eliminar.png' %}">
+            </a>
+        </div>
+    </main>
+</div>
+{% endblock %}
