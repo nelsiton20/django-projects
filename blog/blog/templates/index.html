@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Mi Blog {% endblock %}
+{% load static %}
+{% block style %} {% static 'css/index.css' %} {% endblock %}
+
+{% block content %}
+    <section class="section-container">
+        {% for publication in publications %}
+            <article class="publication-container">
+                <div class="publication-detail">
+                    <h6>Creado por: {{ publication.user }}</h6>
+                    <span>{{ publication.created_at|date:"d/m/Y H:i" }}</span>
+                </div>
+                <p class="publication-content">{{ publication.content }}</p>
+                <div class="comment-container">
+                    {% for comment in publication.comment_set.all %}
+                        <div class="comment">
+                            <p>{{ comment.content }}</p>
+                            <div class="comment-detail">
+                                <span>{{ comment.user }} - {{ comment.created_at|date:"d/m/Y H:i" }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <form method="POST" action="{% url 'comment' publication.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" value="hola">
+                    {% for field in form %}
+                        <div>
+                            {{ field }}
+    
+                            {% if field.errors %}
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit">Comentar</button>
+                </form>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

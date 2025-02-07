@@ -1,0 +1,141 @@
+.header-article{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.article-title{
+    margin: 0;
+}
+
+.icon img{
+    width: 24px;
+}
+
+.option-container{
+    width: 100px;
+    display: none;
+    position: absolute;
+    right: 8px;
+    top: 25px;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 5px 10px;
+    box-shadow: 0 0 5px #000;
+}
+
+.option-container ul{
+    margin: 0;
+
+    & li{
+        list-style: none;
+        
+        & a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+
+    & li:hover{
+        opacity: 0.5;
+    }
+}
+
+.delete-background {
+    background-color: rgba(0, 0, 0, 0.5); 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    display: none;
+    justify-content: center;
+    align-items: center; 
+    z-index: 10;
+}
+
+.delete-container{
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 5px 10px;
+
+    & p{
+        margin: 5px 0;
+    }
+
+    & .delete-button-container{
+        display: flex;
+        justify-content: end;
+        gap: 7px;
+
+        & a{
+            display: block;
+            text-decoration: none;
+            background-color: #1e90ff;
+        }
+
+        & button{
+            border: none;
+            background-color: #f00;
+            
+        }
+
+        & a, button{
+            padding: 3px 5px;
+            border-radius: 5px;
+            color: #fff;
+            font-family: sans-serif;
+            cursor: pointer;
+        }
+
+        & a:hover, button:hover{
+            opacity: 0.8;
+        }
+    }
+}
+
+
+.section{
+    background: linear-gradient(to bottom, #F5F5F5, #FFFFFF);
+    padding: 10px 0;
+}
+
+.article-publication{
+    box-sizing: border-box;
+    width: 60%;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    
+    & p{
+        color: #333;
+    }
+}
+
+.comment-container{
+    background-color: #fafafa;
+    font-size: 12px;
+
+    & .comment p{
+        margin: 0;
+        margin-bottom: 3px;
+        color: #000;
+    }
+
+    & .comment-detail{
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+}
+
+
+/* --------- MEDIA QUERIES ---------- */
+@media (max-width:600px){
+    .article-publication{
+        width: 90%;
+    }
+}

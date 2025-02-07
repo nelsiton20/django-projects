@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} My publications {% endblock %}
+{% block style %} {% static 'css/publications/me.css'%} {% endblock %}
+
+{% block content %}
+<section class="section">
+    {% for publication in publications %}
+        <article class="article-publication">
+            <div class="header-article">
+                <h6 class="article-title">Creado por: {{ publication.user }}</h6>
+                <span class="icon"><img src="{% static 'icons/tres-barras.png' %}"></span>
+                <div class="option-container">
+                    <ul>
+                        <li><a href="{% url 'edit' publication.id %}">Editar</a></li>
+                        <li><a class="button-delete">Eliminar</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+            <p>{{ publication.content }}</p>
+
+            <div class="comment-container">
+                {% for comment in publication.comment_set.all %}
+                    <div class="comment">
+                        <p>{{ comment.content }}</p>
+                        <div class="comment-detail">
+                            <span>{{ comment.user }} - {{ comment.created_at|date:"d/m/Y H:i" }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="delete-background">
+                <div class="delete-container">
+                    <p>¿Estás seguro de eliminar esta publicación?</p>
+                    <div class="delete-button-container">
+                        <a href="{% url 'delete' publication.id %}">Sí</a>
+                        <button class="button-not">No</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/publications/me.js' %}"></script>
+{% endblock %}
